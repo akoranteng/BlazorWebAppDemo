@@ -23,3 +23,35 @@ A design‑time factory enabling EF Core CLI and PowerShell migrations.
 
 ### **4. InitialCreate Migration**
 Generated using:
+
+This generated `products.db` in the project folder.
+
+---
+
+## 📂 Project Structure (after EF Core setup)
+BlazoWebAppDemo/ │   BlazoWebAppDemo.csproj │   products.db │  
+Program.cs │   appsettings.json │ ├── Data/ │     Product.cs │     AppDbContext.cs │   
+AppDbContextFactory.cs │ ├── Migrations/ │     20260114215632_InitialCreate.cs │ 
+
+BlazoWebAppDemoModelSnapshot.cs
+
+## ▶️ How to Run This Branch
+
+1. Restore packages  
+2. Build the solution  
+3. Run the app  
+4. Confirm `products.db` exists next to the `.csproj` file  
+5. Use DB Browser for SQLite to inspect the `Products` table
+
+## 🔀 Next Steps
+
+The next branch will introduce:
+- Products listing page  
+- Navigation  
+- Basic CRUD scaffolding 
+
+
+
+
+
+
