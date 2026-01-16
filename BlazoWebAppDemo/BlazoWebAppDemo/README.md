@@ -1,57 +1,90 @@
-﻿# 01 – EF Core Setup (SQLite + Product Model + Initial Migration)
+﻿# 02-ui-counter-fetchdata
 
-This branch introduces the foundational data layer for the **BlazorWebAppDemo** project.  
-It configures Entity Framework Core with SQLite, defines the `Product` entity, creates the `AppDbContext`, and applies the first migration to generate the `products.db` database.
-
----
-
-## ✅ What Was Added in This Branch
-
-### **1. Product Entity**
-A simple model representing products in the system:
-- `Id` (int, primary key)
-- `Name`
-- `Description`
-- `Price`
-
-### **2. AppDbContext**
-The EF Core database context that exposes:
-- `DbSet<Product> Products`
-
-### **3. AppDbContextFactory**
-A design‑time factory enabling EF Core CLI and PowerShell migrations.
-
-### **4. InitialCreate Migration**
-Generated using:
-
-This generated `products.db` in the project folder.
+This branch completes the foundational UI for the Blazor Web App by adding the **Counter** and **Fetch Data** pages and wiring them into the existing navigation and layout. These pages finalize the starter experience and ensure the application feels functional and cohesive before moving into the Product CRUD workflow.
 
 ---
 
-## 📂 Project Structure (after EF Core setup)
-BlazoWebAppDemo/ │   BlazoWebAppDemo.csproj │   products.db │  
-Program.cs │   appsettings.json │ ├── Data/ │     Product.cs │     AppDbContext.cs │   
-AppDbContextFactory.cs │ ├── Migrations/ │     20260114215632_InitialCreate.cs │ 
+## 🎯 Purpose of This Branch
 
-BlazoWebAppDemoModelSnapshot.cs
+This branch focuses on:
 
-## ▶️ How to Run This Branch
+- Adding the **Counter** page (`/counter`)
+- Adding the **Fetch Data** page (`/fetchdata`)
+- Creating the supporting **WeatherForecast** model and service
+- Registering the service in `Program.cs`
+- Ensuring both pages render correctly within the custom layout
+- Verifying navigation links work end‑to‑end
 
-1. Restore packages  
-2. Build the solution  
-3. Run the app  
-4. Confirm `products.db` exists next to the `.csproj` file  
-5. Use DB Browser for SQLite to inspect the `Products` table
+This completes the baseline UI that every Blazor Web App typically starts with.
 
-## 🔀 Next Steps
+---
 
-The next branch will introduce:
-- Products listing page  
-- Navigation  
-- Basic CRUD scaffolding 
+## 📁 Files Added in This Branch
 
+### Components/Pages/
+- `Counter.razor`
+- `FetchData.razor`
 
+### Data/
+- `WeatherForecast.cs`
+- `WeatherForecastService.cs`
 
+### Program.cs
+- Added DI registration for `WeatherForecastService`
 
+---
 
+## 🧩 Key Features Implemented
 
+### 1. Counter Page
+A simple interactive component demonstrating:
+
+- Event handling  
+- State updates  
+- Component rendering  
+
+### 2. Fetch Data Page
+A data‑driven component demonstrating:
+
+- Dependency injection  
+- Async data loading  
+- Table rendering with Bootstrap  
+- Component lifecycle (`OnInitializedAsync`)  
+
+### 3. Weather Forecast Service
+A lightweight in‑memory service that returns sample weather data for the Fetch Data page.
+
+### 4. Navigation Integration
+Both pages are now fully accessible from the sidebar navigation.
+
+---
+
+## 🚀 How to Test This Branch
+
+Run the application and navigate to:
+
+- `/counter`
+- `/fetchdata`
+
+Or use the sidebar links.
+
+You should see:
+
+- A working counter with increment logic  
+- A fully rendered weather forecast table  
+- Clean Bootstrap styling  
+- Smooth navigation within the custom layout  
+
+---
+
+## 📚 Learning Outcomes
+
+By the end of this branch, learners understand:
+
+- How to add new pages to a Blazor Web App  
+- How routing works under `Components/Pages`  
+- How to inject and consume services  
+- How to render dynamic data in Razor components  
+- How to integrate new UI pages into a custom layout and navigation  
+
+This sets the stage for the next major milestone: **building the Products List page** and beginning the CRUD workflow.
