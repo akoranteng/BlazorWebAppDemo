@@ -4,7 +4,7 @@ using System.Collections.Generic;
 //using BlazoWebAppDemo.Data;
 
 
-namespace BlazorWebApp.Data
+namespace BlazoWebAppDemo.Data
 {
     public class AppDbContext : DbContext
     {

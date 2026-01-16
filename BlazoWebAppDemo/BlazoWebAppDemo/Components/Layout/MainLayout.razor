@@ -1,9 +1,13 @@
-﻿@inherits LayoutComponentBase
+﻿@namespace BlazoWebAppDemo.Components.Layout
+@inherits LayoutComponentBase
+<div class="layout-container">
+    <aside class="sidebar">
+        <NavMenu />
+    </aside>
 
-@Body
-
-<div id="blazor-error-ui" data-nosnippet>
-    An unhandled error has occurred.
-    <a href="." class="reload">Reload</a>
-    <span class="dismiss">🗙</span>
+    <section class="main-content">
+        <div class="content-wrapper px-4">
+            @Body
+        </div>
+    </section>
 </div>
