@@ -30,9 +30,15 @@ h1:focus {
 
 .form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
     color: var(--bs-secondary-color);
-    text-align: end;
+    text-align: start;
 }
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
     text-align: start;
+}
+
+/* Fix floating label alignment */
+.form-floating > label {
+    left: 0.75rem !important;
+    transform-origin: left top !important;
 }
