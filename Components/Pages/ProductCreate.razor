@@ -1,0 +1,132 @@
+﻿@page "/products/create"
+@rendermode InteractiveServer
+
+@using BlazoWebAppDemo.Data
+@using Microsoft.AspNetCore.Components.Forms
+@inject AppDbContext Db
+@inject NavigationManager Nav
+
+<style>
+    /* Force floating labels to align left */
+    .form-floating > label {
+        left: 0.75rem !important;
+        right: auto !important;
+        text-align: left !important;
+    }
+
+    /* Ensure the input doesn't push the label */
+    .form-floating > .form-control {
+        text-align: left !important;
+    }
+
+    /* Prevent parent containers from right-aligning children */
+    .form-floating {
+        direction: ltr !important;
+    }
+</style>
+
+<div class="page-wrapper py-5">
+    <div class="container">
+        <div class="mx-auto" style="max-width: 720px;">
+
+            <div class="card border-0 shadow-lg rounded-4">
+                <div class="card-header bg-white border-0 py-4 px-4">
+                    <h3 class="fw-bold mb-0 text-primary">Create Product</h3>
+                    <p class="text-muted mt-1 mb-0">Add a new item to your inventory</p>
+                </div>
+
+                <div class="card-body px-4 pb-4">
+
+                    <EditForm Model="@product"
+                              OnValidSubmit="HandleValidSubmit"
+                              FormName="CreateProductForm">
+
+                        <DataAnnotationsValidator />
+                        <ValidationSummary class="text-danger mb-3" />
+
+                        <div class="form-floating mb-4">
+                            <InputText class="form-control"
+                                       id="nameInput"
+                                       placeholder="Product Name"
+                                       @bind-Value="product.Name"
+                                       @bind-Value:event="oninput" />
+                            <label for="nameInput">Product Name</label>
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            <InputText class="form-control"
+                                       id="descInput"
+                                       placeholder="Description"
+                                       @bind-Value="product.Description"
+                                       @bind-Value:event="oninput" />
+                            <label for="descInput">Description</label>
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            <InputText class="form-control"
+                                       id="categoryInput"
+                                       placeholder="Category"
+                                       @bind-Value="product.Category"
+                                       @bind-Value:event="oninput" />
+                            <label for="categoryInput">Category</label>
+                        </div>
+
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <InputNumber class="form-control"
+                                                 id="qtyInput"
+                                                 placeholder="Quantity"
+                                                 @bind-Value="product.Quantity" />
+                                    <label for="qtyInput">Quantity</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <InputNumber class="form-control"
+                                                 id="priceInput"
+                                                 placeholder="Price"
+                                                 @bind-Value="product.Price" />
+                                    <label for="priceInput">Price</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end mt-5">
+                            <button type="button"
+                                    class="btn btn-light border me-3 px-4"
+                                    @onclick="Cancel">
+                                Cancel
+                            </button>
+
+                            <button type="submit"
+                                    class="btn btn-primary px-4">
+                                Create Product
+                            </button>
+                        </div>
+
+                    </EditForm>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@code {
+    private Product product = new();
+
+    private async Task HandleValidSubmit()
+    {
+        Db.Products.Add(product);
+        await Db.SaveChangesAsync();
+        Nav.NavigateTo("/products");
+    }
+
+    private void Cancel()
+    {
+        Nav.NavigateTo("/products");
+    }
+}

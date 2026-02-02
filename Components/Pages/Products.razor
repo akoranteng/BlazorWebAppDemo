@@ -1,0 +1,65 @@
+﻿@page "/products"
+@rendermode InteractiveServer
+@using BlazoWebAppDemo.Data
+@inject AppDbContext Db
+@using Microsoft.EntityFrameworkCore
+
+<h3>Products</h3>
+
+<div class="mb-3">
+    <a class="btn btn-primary" href="/products/create">Create Product</a>
+</div>
+
+@if (products == null)
+{
+    <p><em>Loading products...</em></p>
+}
+else if (!products.Any())
+{
+    <div class="alert alert-info">
+        No products found. Click <strong>Create Product</strong> to add your first item.
+    </div>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in products)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Description</td>
+                    <td>@product.Category</td>
+                    <td>@product.Quantity</td>
+                    <td>@product.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Product>? products;
+
+    protected override async Task OnInitializedAsync()
+    {
+        products = await Db.Products
+            .OrderBy(p => p.Name)
+            .ToListAsync();
+
+        // DEBUG: print what the DB actually returned
+        foreach (var p in products)
+        {
+            Console.WriteLine($"ROW: {p.Id}, {p.Name}, {p.Description}, {p.Category}, {p.Quantity}, {p.Price}");
+        }
+    }
+}

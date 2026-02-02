@@ -1,0 +1,27 @@
+.nav-menu {
+    padding: 1rem;
+    background-color: #f8f9fa;
+    height: 100vh;
+    border-right: 1px solid #dee2e6;
+}
+
+.nav-header {
+    margin-bottom: 1rem;
+    font-weight: bold;
+    color: #343a40;
+}
+
+.nav-link {
+    color: #333;
+    padding: 0.5rem 0;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+    .nav-link.active {
+        font-weight: bold;
+        color: #007bff;
+        border-left: 3px solid #007bff;
+        padding-left: 0.75rem;
+        background-color: #e9ecef;
+    }

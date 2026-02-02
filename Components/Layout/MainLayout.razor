@@ -1,0 +1,13 @@
+﻿@namespace BlazoWebAppDemo.Components.Layout
+@inherits LayoutComponentBase
+<div class="layout-container">
+    <aside class="sidebar">
+        <NavMenu />
+    </aside>
+
+    <section class="main-content">
+        <div class="content-wrapper px-4">
+            @Body
+        </div>
+    </section>
+</div>
